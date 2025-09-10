@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cyber Smart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -36,8 +37,6 @@
       color: #ffffff;
       font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      -webkit-background-clip: unset;
-      -webkit-text-fill-color: unset;
       background: none;
       animation: none;
     }
@@ -47,8 +46,10 @@
       top: 0;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
-      padding: 15px 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 20px;
       z-index: 100;
       backdrop-filter: blur(12px);
       background: rgba(15, 25, 35, 0.3);
@@ -56,11 +57,10 @@
     }
 
     nav a {
-      margin: 0 10px;
       text-decoration: none;
       color: #fff;
       font-weight: 500;
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: 12px;
       transition: 0.3s;
     }
@@ -70,10 +70,6 @@
       color: #0ff;
     }
 
-    @media (max-width: 768px) {
-      nav { display: none; }
-    }
-
     section {
       min-height: 100vh;
       display: flex;
@@ -81,7 +77,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 100px 40px;
+      padding: 100px 20px 60px;
       position: relative;
       opacity: 0;
       transform: translateY(60px);
@@ -100,15 +96,17 @@
     }
 
     .home h1 {
-      font-size: 5rem;
+      font-size: clamp(2rem, 8vw, 5rem);
       font-weight: 800;
       margin-bottom: 20px;
+      white-space: nowrap;
     }
 
     .home p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
       margin-top: 10px;
-      font-size: 1rem;
       font-weight: 400;
+      padding: 0 10px;
     }
 
     .circle {
@@ -127,36 +125,35 @@
     }
 
     .about, .campus {
+      width: 100%;
       max-width: 1200px;
-      margin: 80px auto;
       padding: 20px;
-      text-align: center;
     }
 
     .about h2, .campus h2 {
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 6vw, 3.5rem);
       margin-bottom: 40px;
     }
 
     .about p, .campus p {
-      font-size: 1.2rem;
-      line-height: 1.9;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.8;
       max-width: 850px;
-      margin: 0 auto 50px auto;
-      text-align: center;
+      margin: 0 auto 50px;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
       margin-top: 40px;
+      padding: 0 10px;
     }
 
     .card {
       background: rgba(255,255,255,0.08);
-      padding: 50px;
-      border-radius: 24px;
+      padding: 40px;
+      border-radius: 20px;
       transition: transform 0.6s ease, box-shadow 0.6s ease;
       display: flex;
       flex-direction: column;
@@ -181,20 +178,37 @@
     }
 
     .card-title {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 20px;
-      text-align: center;
+      margin-bottom: 16px;
     }
 
     .card-text {
       font-size: 1rem;
-      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        padding: 30px 20px;
+      }
+
+      .card-title {
+        font-size: 1.3rem;
+      }
+
+      .card-text {
+        font-size: 0.95rem;
+      }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
@@ -202,7 +216,7 @@
   </nav>
 
   <section id="home" class="home">
-    <h1>Cyber <span>Smart</span></h1>
+    <h1>Cyber Smart</h1>
     <p>Bridging the Digital and Physical Worlds</p>
     <p>Advancing the Future of Cyber-Physical Systems</p>
   </section>
@@ -237,6 +251,7 @@
   </section>
 
   <script>
+    // Smooth scroll for nav links
     document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -246,6 +261,7 @@
       });
     });
 
+    // Floating circles animation
     function createCircle() {
       const circle = document.createElement('div');
       circle.classList.add('circle');
@@ -259,22 +275,24 @@
     }
     setInterval(createCircle, 120);
 
+    // Reveal sections/cards on scroll
     function revealOnScroll() {
       const reveals = document.querySelectorAll('section, .card');
       const windowHeight = window.innerHeight;
       let delay = 0;
-      reveals.forEach((el, index) => {
+      reveals.forEach(el => {
         const elementTop = el.getBoundingClientRect().top;
         if (elementTop < windowHeight - 100 && !el.classList.contains('revealed')) {
           setTimeout(() => {
             el.classList.add('revealed');
           }, delay);
-          delay += 200; // stagger delay between elements
+          delay += 200;
         }
       });
     }
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
   </script>
+
 </body>
 </html>
