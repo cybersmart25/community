@@ -13,13 +13,13 @@
 
     body {
       font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #060913, #101d2c, #0d1c22);
+      background: linear-gradient(135deg, #0a0f1f, #101d2c, #0f2027);
       color: #fff;
       overflow-x: hidden;
     }
 
     h1, h2 {
-      background: linear-gradient(270deg, #00bfff, #00ff99, #ff00ff);
+      background: linear-gradient(90deg, #00bfff, #00ff99, #ff00ff);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -116,7 +116,7 @@
       border-radius: 50%;
       background: skyblue;
       box-shadow: 0 0 8px rgba(0, 255, 180, 0.8);
-      animation: move 10s linear infinite;
+      animation: move linear infinite;
       opacity: 0.3;
     }
 
@@ -150,16 +150,16 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 50px;
-      margin: 40px;
+      margin-top: 40px;
     }
 
     .card {
       background: rgba(255,255,255,0.08);
       padding: 50px;
-      border-radius: 30px;
+      border-radius: 24px;
       transition: transform 0.6s ease, box-shadow 0.6s ease;
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -167,18 +167,6 @@
       transform: translateY(60px);
       text-align: center;
       min-height: 260px;
-      animation: breathing 3s ease-in-out infinite normal;
-    }
-    @keyframes breathing {
-        0% {
-            transform: scale(0.96); /* Start slightly smaller */
-        }
-        50% {
-            transform: scale(0.98); /* Expand to be slightly larger */
-        }
-        100% {
-            transform: scale(0.96); /* Return to original size, completing the cycle */
-        }
     }
 
     .card.revealed {
@@ -187,9 +175,9 @@
       transition: all 0.8s ease;
     }
 
-    .card {
+    .card:hover {
       transform: rotateY(6deg) scale(1.07);
-      box-shadow: 0 0 30px rgba(2, 104, 151, 0.952);  
+      box-shadow: 0 0 35px rgba(0,255,200,0.5);
     }
 
     .card-title {
@@ -265,7 +253,7 @@
       circle.style.width = `${size}px`;
       circle.style.height = `${size}px`;
       circle.style.top = `${Math.random() * 100}vh`;
-      circle.style.animationDuration = `${3 + Math.random() * 5}s`;
+      circle.style.animationDuration = `${1.5 + Math.random() * 2.5}s`;
       document.querySelector('.home').appendChild(circle);
       setTimeout(() => circle.remove(), 6000);
     }
@@ -290,4 +278,3 @@
   </script>
 </body>
 </html>
-
